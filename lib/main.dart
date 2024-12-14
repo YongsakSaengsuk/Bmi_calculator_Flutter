@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/homepage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,10 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('BMI Calculator'),
+          title: const Center(child: Text('BMI Calculator')),
         ),
-        body: const Center(child: Text('Hello World')),
+        body: const Homepage()  
       ),
-    );
+    ); 
   }
 }
