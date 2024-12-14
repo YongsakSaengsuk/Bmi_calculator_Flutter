@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/bmi_data.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
@@ -15,42 +16,68 @@ class _HomepageState extends State<Homepage> {
   var bmi = 0.0;
   void bmicalculation() {
     setState(() {
-      try {
-        weight = double.parse(weightController.text);
-        height = double.parse(heightController.text);
-        if (weight <= 0 || height <= 0) {
-          bmi = 0.0;
-          throw Exception('Height and weight must be greater than 0');
-        }
-        bmi = weight / ((height / 100) * (height / 100));
-      }catch (e) {
-        bmi = 0.0;
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
-      }
+      weight = double.parse(weightController.text);
+      height = double.parse(heightController.text);
 
+      bmi = weight / ((height / 100) * (height / 100));
     });
   }
+
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text('Input your height (cm)'),
-        TextField(
-          keyboardType: TextInputType.number,
-          controller: heightController,
-        ),
-        const SizedBox(height: 20),
-        const Text('Input your weight (kg)'),
-        TextField(
-          keyboardType: TextInputType.number,
-          controller: weightController,
-        ),
-        ElevatedButton(
-          onPressed: bmicalculation,
-          child: const Text('Submit'),
-        ),
-        Text(bmi.toString()),
-      ],
+    return Form(
+      key: formKey,
+      child: Column(
+        children: [
+          const Text('Input your height (cm)'),
+          TextFormField(
+            keyboardType: TextInputType.number,
+            controller: heightController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Enter your height',
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your height';
+              }
+              if (double.tryParse(value) == null || double.parse(value) <= 0) {
+                return 'Please enter a valid number';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 20),
+          const Text('Input your weight (kg)'),
+          TextFormField(
+            keyboardType: TextInputType.number,
+            controller: weightController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Enter your weight',
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your weight';
+              }
+              if (double.tryParse(value) == null || double.parse(value) <= 0) {
+                return 'Please enter a valid number';
+              }
+              return null;
+            },
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (formKey.currentState!.validate()) {
+                bmicalculation();
+              }
+            },
+            child: const Text('Submit'),
+          ),
+          Text('${bmi.toStringAsFixed(2)} ${getBMICategory(bmi)}'),
+        ],
+      ),
     );
   }
 }
