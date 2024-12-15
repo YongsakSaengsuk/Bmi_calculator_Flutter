@@ -14,13 +14,13 @@ A simple Flutter application to calculate Body Mass Index (BMI) based on user in
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/bmi_calculator.git
+   git clone https://github.com/YongsakSaengsuk/Bmi_calculator_Flutter.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd bmi_calculator
+   cd Bmi_calculator_Flutter
    ```
 
 3. Install the dependencies:
@@ -37,13 +37,13 @@ A simple Flutter application to calculate Body Mass Index (BMI) based on user in
 
 ## Usage
 
+- Input your height in centimeters.
 - Input your weight in kilograms.
-- Input your height in meters.
-- Press the "Calculate" button to get your BMI and health status.
+- Press the "Submit" button to get your BMI and health status.
 
 ## Example
 
-For a weight of 70 kg and height of 1.75 m:
+For a weight of 70 kg and height of 175 cm:
 
 - BMI = 22.86
 - Health Status = Normal weight
