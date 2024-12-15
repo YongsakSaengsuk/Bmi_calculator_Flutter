@@ -19,8 +19,9 @@ class _HomepageState extends State<Homepage> {
     setState(() {
       weight = double.parse(weightController.text);
       height = double.parse(heightController.text);
-
       bmi = weight / ((height / 100) * (height / 100));
+      heightController.clear();
+      weightController.clear();
     });
   }
 
@@ -34,8 +35,9 @@ class _HomepageState extends State<Homepage> {
         child: Column(
           children: [
             Text(
-              '${bmi.toStringAsFixed(2)} ${getBMICategory(bmi)}',
+              '${bmi.toStringAsFixed(2)}\n${getBMICategory(bmi)}',
               style: GoogleFonts.itim(textStyle: const TextStyle(fontSize: 40)),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(
               height: 20,
@@ -90,7 +92,8 @@ class _HomepageState extends State<Homepage> {
                   bmicalculation();
                 }
               },
-              child: const Text('Submit'),
+              child: const Text('Submit',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             ),
             const SizedBox(height: 20),
           ],
