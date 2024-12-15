@@ -33,8 +33,16 @@ class _HomepageState extends State<Homepage> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-             Text('Input your height (cm)',
-                style: GoogleFonts.itim(textStyle: const TextStyle(fontSize: 20))),
+            Text(
+              '${bmi.toStringAsFixed(2)} ${getBMICategory(bmi)}',
+              style: GoogleFonts.itim(textStyle: const TextStyle(fontSize: 40)),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text('Input your height (cm)',
+                style:
+                    GoogleFonts.itim(textStyle: const TextStyle(fontSize: 20))),
             TextFormField(
               keyboardType: TextInputType.number,
               controller: heightController,
@@ -55,7 +63,8 @@ class _HomepageState extends State<Homepage> {
             ),
             const SizedBox(height: 20),
             Text('Input your weight (kg)',
-                style: GoogleFonts.itim(textStyle: const TextStyle(fontSize: 20))),
+                style:
+                    GoogleFonts.itim(textStyle: const TextStyle(fontSize: 20))),
             TextFormField(
               keyboardType: TextInputType.number,
               controller: weightController,
@@ -74,6 +83,7 @@ class _HomepageState extends State<Homepage> {
                 return null;
               },
             ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
@@ -83,7 +93,6 @@ class _HomepageState extends State<Homepage> {
               child: const Text('Submit'),
             ),
             const SizedBox(height: 20),
-            Text('${bmi.toStringAsFixed(2)} ${getBMICategory(bmi)}'),
           ],
         ),
       ),
