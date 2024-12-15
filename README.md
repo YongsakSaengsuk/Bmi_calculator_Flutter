@@ -50,7 +50,7 @@ For a weight of 70 kg and height of 175 cm:
 
 ## Screenshots
 
-![App Screenshot](screenshot.png)
+![App Screenshot](Screenshot.png)
 
 ## License
 
